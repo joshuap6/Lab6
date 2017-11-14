@@ -44,7 +44,30 @@ public class FrontCompression {
         /*
          * Complete this function.
          */
+        String[] corpusSplit = corpus.split("\\n");
+        String[] compressedArray = new String[corpusSplit.length];
+        for (int i = 0; i < corpusSplit.length; i++) {
+            int prefix = longestPrefix(corpusSplit[i], corpusSplit[i - 1]);
+            if (corpusSplit[i]  == null) {
+                return null;
+            } else if (corpusSplit[i].length() == 0) {
+                return "";
+            } else if (i == 0 || prefix == 0) {
+                compressedArray[i] = "0 " + corpusSplit[i];
+            } else {
+                for (int j = prefix - 1; j < corpusSplit[i].length(); j++) {
 
+                }
+            }
+        }
+        /*if (longestPrefix == 0) {
+            return longestPrefix + " " + corpus;
+        }
+        System.out.print(longestPrefix + " ");
+        for (int i = longestPrefix - 1; i < corpus.length(); i++) {
+            System.out.print(corpus.charAt(i));
+        }
+        */
         return "";
     }
 
@@ -67,7 +90,6 @@ public class FrontCompression {
         /*
          * Complete this function.
          */
-
         return "";
     }
 
@@ -82,7 +104,18 @@ public class FrontCompression {
         /*
          * Complete this function.
          */
-        return 0;
+        if (secondString == null) {
+            return 0;
+        }
+        int prefix = 0;
+        for (int i = 0; i < firstString.length() && i < secondString.length(); i++) {
+            if (firstString.charAt(i) == secondString.charAt(i)) {
+                prefix += 1;
+            } else {
+                break;
+            }
+        }
+        return prefix;
     }
 
     /**
